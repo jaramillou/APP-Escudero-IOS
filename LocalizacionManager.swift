@@ -8,10 +8,14 @@
 
 import CoreLocation
 
+
+
 class LocalizacionManager: NSObject, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    var coord =  Coordenadas()
+    
+    var coord = datosGps(GeoJson: [], velocidad: [], descripcion: "",hora: Date(),hora_fin: Date(),velMax: -3)
+    
     private var contador = 0
     private var vectorLocation = [CLLocation]()
     static let sharedInstance = LocalizacionManager()
@@ -23,6 +27,7 @@ class LocalizacionManager: NSObject, CLLocationManagerDelegate {
     
     
       override init() {
+        
         super.init()
 
         locationManager.delegate = self
@@ -41,12 +46,13 @@ class LocalizacionManager: NSObject, CLLocationManagerDelegate {
     }
     
     func start(){
-        coord = Coordenadas.init()
+        coord.iniciarCoordendas()
         locationManager.startUpdatingLocation()
+        
     }
     func stop(){
         locationManager.stopUpdatingLocation()
-        coord.terminarCoordendas()
+        //coord.terminarCoordendas()
         
     }
     

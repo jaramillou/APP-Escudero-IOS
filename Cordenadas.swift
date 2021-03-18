@@ -11,9 +11,9 @@ import CoreLocation
 
 
 
-class Coordenadas {
+class Coordenadas : Codable {
     var GeoJson = "{ \"type\" : \"LineString\",\n \"coordinates\": [\n";
-
+    
     
     init(){
     
@@ -38,6 +38,7 @@ class Coordenadas {
     
         func anexarCoordendas(locatione : [CLLocation]){
             GeoJson.append("[")
+        
             GeoJson.append(String(format: "%.7f", locatione[0].coordinate.longitude))
             GeoJson.append(",")
             GeoJson.append(String(format: "%.7f", locatione[0].coordinate.latitude))
